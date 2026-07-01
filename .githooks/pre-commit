@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Regenerate profile/linkedin.json from profile/resume.tex whenever the resume
+# changes, so the profile is always derived from the resume (never hand-edited).
+#
+# Enabled via: git config core.hooksPath .githooks
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+# Only act when the resume (or the overrides / generator itself) is part of this commit.
+if git diff --cached --name-only | grep -qE '^(profile/resume\.tex|profile/linkedin\.overrides\.json|scripts/gen_linkedin_profile\.py)$'; then
+  echo "pre-commit: resume changed — regenerating profile/linkedin.json + profile/resume.md"
+  python3 "$repo_root/scripts/gen_linkedin_profile.py"
+  git add "$repo_root/profile/linkedin.json" "$repo_root/profile/resume.md"
+fi

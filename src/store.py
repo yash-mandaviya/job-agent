@@ -31,6 +31,14 @@ def _conn() -> sqlite3.Connection:
     return c
 
 
+def reset() -> int:
+    """Wipe the dedup table for a clean re-run. Returns rows deleted."""
+    with closing(_conn()) as c, c:
+        n = c.execute("SELECT COUNT(*) FROM seen_jobs").fetchone()[0]
+        c.execute("DELETE FROM seen_jobs")
+    return n
+
+
 def insert_new(jobs: list[JobPosting]) -> list[JobPosting]:
     """Insert jobs we haven't seen; return only the ones that were actually new."""
     if not jobs:
@@ -59,6 +67,26 @@ def mark_emailed(job_ids: list[str], scores: dict[str, int]) -> None:
                 "UPDATE seen_jobs SET emailed_at = ?, score = ? WHERE id = ?",
                 (now, scores.get(jid), jid),
             )
+
+
+def record_scores(scores: dict[str, int]) -> None:
+    """Persist fit scores for all scored jobs (not just emailed ones)."""
+    if not scores:
+        return
+    with closing(_conn()) as c, c:
+        for jid, sc in scores.items():
+            c.execute("UPDATE seen_jobs SET score = ? WHERE id = ?", (sc, jid))
+
+
+def all_jobs() -> list[dict]:
+    """Every job we've ever seen, for the dashboard."""
+    with closing(_conn()) as c:
+        c.row_factory = sqlite3.Row
+        rows = c.execute(
+            "SELECT id, source, company, title, url, first_seen, score, emailed_at "
+            "FROM seen_jobs ORDER BY first_seen DESC"
+        ).fetchall()
+    return [dict(r) for r in rows]
 
 
 def stats() -> dict[str, int]:

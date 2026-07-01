@@ -1,0 +1,10 @@
+{
+  "_comment": "Fields NOT derivable from resume.tex. Deep-merged on top of the generated profile by scripts/gen_linkedin_profile.py. Everything else comes from resume.tex — edit the resume, not linkedin.json.",
+  "headline": "Software Developer @ FundMore.ai | Full-Stack (MEAN / Angular, Node.js) | AI & RAG | Master of Applied Computing, University of Windsor",
+  "top_skills": ["Full-Stack Development", "Angular & Node.js (MEAN)", "AI / RAG Systems"],
+  "languages": [
+    {"language": "English", "level": "Full Professional"},
+    {"language": "Hindi", "level": "Native or Bilingual"},
+    {"language": "Gujarati", "level": "Native or Bilingual"}
+  ]
+}

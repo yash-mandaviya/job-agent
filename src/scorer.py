@@ -8,9 +8,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from anthropic import AsyncAnthropic
-
 from .config import Config
+from .llm import LLMClient, build_llm
 from .profile import Profile
 from .sources.base import JobPosting
 
@@ -61,7 +60,7 @@ def _days_old(posted_at: datetime | None) -> int | None:
 
 
 async def _stage1(
-    client: AsyncAnthropic,
+    client: LLMClient,
     cfg: Config,
     profile_block: str,
     job: JobPosting,
@@ -75,16 +74,13 @@ async def _stage1(
         f"Description excerpt:\n{job.description[:800]}"
     )
     try:
-        resp = await client.messages.create(
+        text = await client.complete(
             model=cfg.model_filter,
             max_tokens=200,
-            system=[
-                {"type": "text", "text": instructions},
-                {"type": "text", "text": profile_block, "cache_control": {"type": "ephemeral"}},
-            ],
-            messages=[{"role": "user", "content": user}],
+            system_texts=[instructions, profile_block],
+            user=user,
         )
-        data = _extract_json(resp.content[0].text)
+        data = _extract_json(text)
         return job, bool(data.get("pass", False)), int(data.get("rough_score", 0))
     except Exception as e:
         log.warning("stage1 failed for %s @ %s: %s", job.title, job.company, e)
@@ -92,7 +88,7 @@ async def _stage1(
 
 
 async def _stage2(
-    client: AsyncAnthropic,
+    client: LLMClient,
     cfg: Config,
     profile_block: str,
     job: JobPosting,
@@ -109,16 +105,13 @@ async def _stage2(
         f"Full description:\n{job.description}"
     )
     try:
-        resp = await client.messages.create(
+        text = await client.complete(
             model=cfg.model_scorer,
             max_tokens=600,
-            system=[
-                {"type": "text", "text": instructions},
-                {"type": "text", "text": profile_block, "cache_control": {"type": "ephemeral"}},
-            ],
-            messages=[{"role": "user", "content": user}],
+            system_texts=[instructions, profile_block],
+            user=user,
         )
-        data = _extract_json(resp.content[0].text)
+        data = _extract_json(text)
         return ScoredJob(
             job=job,
             score=int(data.get("score", 0)),
@@ -139,24 +132,50 @@ async def score_jobs(
     stage1_concurrency: int = 8,
     stage2_concurrency: int = 4,
 ) -> list[ScoredJob]:
-    client = AsyncAnthropic(api_key=cfg.anthropic_api_key)
+    client = build_llm(cfg)
     profile_block = profile.as_prompt_block()
 
+    # A local Ollama model serves requests serially on one machine; high
+    # concurrency just thrashes it. Keep it gentle for the local backend.
+    if cfg.llm_backend == "ollama":
+        stage1_concurrency = min(stage1_concurrency, 2)
+        stage2_concurrency = min(stage2_concurrency, 1)
+
     sem1 = asyncio.Semaphore(stage1_concurrency)
+    total1 = len(jobs)
+    done1 = 0
+    log.info("stage1: pre-filtering %d postings (concurrency=%d)…", total1, stage1_concurrency)
 
     async def s1(j):
+        nonlocal done1
         async with sem1:
-            return await _stage1(client, cfg, profile_block, j)
+            res = await _stage1(client, cfg, profile_block, j)
+        done1 += 1
+        job, passed, rough = res
+        log.info("stage1 [%d/%d] %-4s %s @ %s", done1, total1,
+                 "PASS" if passed else "drop", job.title[:50], job.company)
+        return res
 
     s1_results = await asyncio.gather(*[s1(j) for j in jobs])
     survivors = [job for job, passed, _ in s1_results if passed]
     log.info("stage1: %d/%d jobs passed pre-filter", len(survivors), len(jobs))
 
     sem2 = asyncio.Semaphore(stage2_concurrency)
+    total2 = len(survivors)
+    done2 = 0
+    log.info("stage2: deep-scoring %d survivors (concurrency=%d)…", total2, stage2_concurrency)
 
     async def s2(j):
+        nonlocal done2
         async with sem2:
-            return await _stage2(client, cfg, profile_block, j)
+            res = await _stage2(client, cfg, profile_block, j)
+        done2 += 1
+        if res is not None:
+            log.info("stage2 [%d/%d] score=%3d %s @ %s", done2, total2,
+                     res.score, res.job.title[:50], res.job.company)
+        else:
+            log.info("stage2 [%d/%d] failed/no-result", done2, total2)
+        return res
 
     s2_results = await asyncio.gather(*[s2(j) for j in survivors])
     scored = [r for r in s2_results if r is not None]

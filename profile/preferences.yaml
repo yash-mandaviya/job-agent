@@ -1,120 +1,133 @@
-# Preferences tuned for Dishita Thaker: 2026 UC Irvine MBA, Strategy & Marketing
-# concentration, with pre-MBA business consulting (ZS Associates) and recent
-# product marketing / GTM experience at Mattel and SEGA.
-# Graduating June 2026 — targeting full-time, post-MBA roles.
+# Preferences tuned for Yash Mandaviya: full-stack software engineer / developer
+# with 2+ years of production experience (FundMore.ai — MEAN stack, AI/RAG),
+# Master of Applied Computing (University of Windsor). Based in Canada.
+# Targeting full-time individual-contributor software engineering roles.
 
-# Lead with marketing/brand/GTM; PM and strategy/consulting are strong secondaries
-# given her consulting background and Product Club leadership.
+# Lead with full-stack software engineering; backend and frontend are strong
+# secondaries, with AI/RAG application work as a differentiator.
 target_functions:
-  - Product Marketing (PMM)
-  - Brand Marketing / Brand Manager
-  - Go-to-Market Strategy / GTM
-  - Marketing Strategy
-  - Growth Marketing
-  - Integrated Marketing / Campaign Management
-  - Marketing Analytics / Commercial Analytics
-  - Product Management (Senior PM / APM / PM MBA programs)
-  - Strategy & Operations / BizOps
-  - Corporate Strategy
-  - Senior Consultant / Strategy Consultant (post-MBA tracks)
+  - Full-Stack Software Development
+  - Software Engineering (General)
+  - Backend Software Development
+  - Frontend Software Development
+  - Web Application Development
+  - API / Microservices Development
+  - AI / RAG Application Engineering
+  - Mobile / Cross-Platform Development (Flutter)
 
-# Post-MBA full-time titles. Avoid IC engineering, internships, or anything
-# requiring 7+ years of post-MBA experience.
+# Early-to-mid career IC engineering titles (2+ years of experience).
+# Avoid people-management, staff/principal, or roles needing 5+ years.
 seniority:
-  - Manager
-  - Senior Manager
-  - Brand Manager / Senior Brand Manager
-  - PMM / Senior PMM
-  - Marketing Manager / Senior Marketing Manager
-  - Product Manager / Senior Product Manager
-  - APM (post-MBA programs)
-  - Senior Associate / Senior Consultant
-  - Lead
+  - Software Engineer
+  - Software Developer
+  - Full-Stack Developer
+  - Software Engineer I / II
+  - SDE / SDE I / SDE II (Software Development Engineer)
+  - SWE
+  - Intermediate / Mid-Level Developer
+  - Associate Software Engineer
+  - Junior Software Engineer
+  - Application Developer
 
-# Industries where her trajectory (CPG, gaming, pharma, tech) gives her
-# meaningful credibility.
+# Industries where his trajectory (fintech, AI, web/mobile) gives credibility.
 industries_preferred:
-  - Consumer / CPG
-  - Gaming & Entertainment
   - Tech / Software / SaaS
   - Fintech
-  - Healthcare / Pharma / Biotech
   - AI / ML platforms
-  - Marketplaces
-  - Retail & DTC
+  - Healthcare / HealthTech
+  - E-commerce / Retail tech
+  - Cloud / Developer Tools
+  - Mobile / App Development
 
 locations:
-  - United States (any major metro)
-  - Remote (US)
-  # Strong existing footprint in SoCal (Irvine, LA) and Bay Area — flag those slightly higher
-  - Greater Los Angeles
-  - Bay Area
-  - New York metro
+  - Canada (any major metro)
+  - Remote (Canada)
+  # Strong existing footprint in Southwestern/Eastern Ontario — flag slightly higher
+  - Greater Toronto Area
+  - Ottawa
+  - Windsor / Southwestern Ontario
 
 remote_ok: true
 
-# Hard requirement: drop postings that EXPLICITLY state no visa sponsorship.
-# Set to false if you're a US citizen / permanent resident and want a wider net.
-requires_sponsorship: true
+# Hard requirement: he does NOT need sponsorship. Keep postings that require
+# work authorization; only drop ones that explicitly exclude his status if any.
+requires_sponsorship: false
 
-# Avoid these — they violate stated direction or are wrong fit/seniority.
+# Avoid these — wrong function or wrong seniority.
 exclusions:
-  - Pure engineering / IC software / SWE roles
-  - Internships (she is graduating, targeting full-time)
-  - Roles requiring 7+ years of post-MBA experience
-  - Director / VP / Head-of roles
-  - Sales Development Rep / Account Executive entry-level sales
-  - Defense contractors
-  - Tobacco / gambling
+  - Non-engineering roles (marketing, sales, product-only, design-only)
+  - Engineering Manager / Director / VP / Head-of roles
+  - Staff / Principal / Senior Staff engineer roles
+  - Roles requiring 5+ years of experience
+  - Internships / co-op (targeting full-time)
   - Roles requiring active security clearance
+  - Defense contractors
 
 # Differentiators — soft signals to boost score, not hard requirements.
 differentiators:
-  - STEM MBA + technical undergrad (ICT, computational science)
-  - Quantitative marketing background (Alteryx, SQL, Tableau, Python)
-  - Brand / product marketing experience at major IPs (Mattel UNO, SEGA)
-  - International consulting (UK / Canada / Italy markets)
-  - Forecasting & launch quantification
+  - 2+ years production full-stack (MEAN / Angular / Node.js / TypeScript)
+  - AI / RAG agent development (research-to-production)
+  - Strong automated testing + CI/CD (GitHub Actions, high coverage)
+  - Microservices delivered on AWS
+  - Polyglot — C#/.NET, Java, Python, Dart/Flutter, C/C++
+  - Master of Applied Computing (Canada) + Computer Engineering undergrad
 
 # ────────────────────────────────────────────────────────────────────────
 # Aggregator search settings — used by JobSpy (LinkedIn/Indeed/Glassdoor/Google)
 # ────────────────────────────────────────────────────────────────────────
 
-# Search location passed to JobSpy. "United States" sweeps all US metros.
-search_location: "United States"
+# Search locations passed to JobSpy. Each location is searched separately, and
+# Indeed's country is inferred per location. Canada-only for now.
+search_locations:
+  - "Canada"
 
-# Only consider postings newer than this many hours. 72 = last 3 days (fresh signal).
-recency_hours: 72
+# Glassdoor metros. When populated, Glassdoor searches these metros (it can't parse
+# country names) instead of search_locations; each metro runs once per query.
+#
+# DISABLED ([]) by default: Glassdoor currently blocks JobSpy's location-lookup
+# endpoint at the bot-detection layer (returns a "Security" page for every term,
+# city or country alike), so it returns nothing regardless of the metro list.
+# This is an upstream Glassdoor/JobSpy issue, not a config problem. If a future
+# JobSpy release restores Glassdoor, re-enable by listing metros here, e.g.:
+#   - "Toronto, Ontario, Canada"
+#   - "Vancouver, British Columbia, Canada"
+#   - "Ottawa, Ontario, Canada"
+glassdoor_metros: []
 
-# How many results to request per query per site.
+# Only consider postings newer than this many hours. 24 = last 1 day (fresh signal).
+recency_hours: 24
+
+# How many results to request per query per site (per location).
 results_per_query: 20
 
-# Search terms — tuned to her marketing-led focus with PM/strategy secondaries.
-# Each becomes one query × 4 sites (linkedin/indeed/glassdoor/google).
+# Search terms — tuned to full-stack software engineering with backend/frontend
+# secondaries. Each becomes one query × N sites × N locations.
 search_queries:
-  # Product / Brand Marketing — primary
-  - "Product Marketing Manager"
-  - "Senior Product Marketing Manager"
-  - "Brand Manager"
-  - "Senior Brand Manager"
-  - "Associate Brand Manager"
-  # GTM & Marketing Strategy
-  - "Go-to-Market Manager"
-  - "Marketing Strategy Manager"
-  - "Integrated Marketing Manager"
-  # Growth
-  - "Growth Marketing Manager"
-  - "Growth Manager"
-  # Product Management — secondary
-  - "Product Manager MBA"
-  - "Associate Product Manager"
-  - "Senior Product Manager"
-  # Strategy & Ops — secondary
-  - "Strategy and Operations"
-  - "Chief of Staff"
-  - "Corporate Strategy Manager"
-  # Marketing Analytics — leverages her ZS/Alteryx/Tableau background
-  - "Marketing Analytics Manager"
-  - "Commercial Strategy Manager"
-  # Consulting (post-MBA tracks)
-  - "Senior Consultant"
+  # Full-stack — primary
+  - "Full Stack Developer"
+  - "Full Stack Software Engineer"
+  - "Software Engineer"
+  - "Software Developer"
+  # Backend
+  - "Backend Developer"
+  - "Backend Software Engineer"
+  - "Node.js Developer"
+  - "Python Developer"
+  - ".NET Developer"
+  # Frontend
+  - "Frontend Developer"
+  - "Angular Developer"
+  - "Web Developer"
+  # Mid-level IC titles
+  - "Software Engineer II"
+  - "Software Engineer I"
+  - "Intermediate Software Developer"
+  - "Application Developer"
+  # SDE / Software Development Engineer variants (Amazon-style titles)
+  - "Software Development Engineer"
+  - "SDE"
+  - "SDE I"
+  - "SDE II"
+  # AI / RAG — leverages his FundMore.ai AI agent work
+  - "AI Software Engineer"
+  - "Machine Learning Engineer"

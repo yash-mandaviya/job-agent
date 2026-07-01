@@ -1,127 +1,196 @@
 {
-  "name": "Dishita A Thaker",
-  "headline": "2026 UC Irvine MBA | Dean's list scholar | Marketing | Product | Analytics & Commercialisation | Beta Gamma Sigma honouree",
-  "location": "Irvine, California, United States",
-  "email": "dathaker@uci.edu",
-  "summary": "Second-year STEM MBA at UC Irvine (Paul Merage), Strategy & Marketing concentration. Pre-MBA: business consulting at ZS Associates (pharma, international markets). Passionate about product marketing, brand marketing, GTM, marketing analytics. Recent experience at Mattel (UNO) and SEGA. CliftonStrengths: Strategic, Achiever, Arranger, Discipline, Learner.",
-  "top_skills": ["Project Management", "Computer Science", "Statistical Analysis"],
+  "name": "Yash Mandaviya",
+  "headline": "Software Developer @ FundMore.ai | Full-Stack (MEAN / Angular, Node.js) | AI & RAG | Master of Applied Computing, University of Windsor",
+  "location": "Windsor, ON",
+  "email": "ymmandaviya1234@gmail.com",
+  "phone": "(226) 975-4143",
+  "github": "https://github.com/yash-mandaviya",
+  "linkedin": "https://linkedin.com/in/yash-mandaviya",
+  "summary": "2+ years of strong full-stack development experience designing, developing, testing, and maintaining scalable, customer-facing applications in agile, fast-paced high stakes production environments. Hands-on experience developing AI-driven and RAG-based solutions, contributing to proof-of-concept research, scalable feature implementation, automated testing, and production-ready software enhancements. Quick to adapt to new technologies and picking up new tech-stacks on-the-fly with a history of contributing to live projects during training phases. Strong communication skills with the ability to translate complex technical concepts into clear, accessible language for non-technical stakeholders, clients, and cross-functional teams. Reliable, proactive, results-oriented, customer-focused and attentive to details, with recognized performance in hackathons and a proven team player with solid communication skills.",
+  "top_skills": [
+    "Full-Stack Development",
+    "Angular & Node.js (MEAN)",
+    "AI / RAG Systems"
+  ],
   "positions": [
     {
-      "company": "Stealth Startup",
-      "title": "Co-Founder",
-      "location": "Irvine, CA",
-      "start": "2026-03",
-      "end": "present",
-      "description": "Sustainability solution for construction industry, team of 5 MBA classmates. Owns product marketing and brand marketing."
-    },
-    {
-      "company": "University of California, Irvine - The Paul Merage School of Business",
-      "title": "Teaching Assistant",
-      "start": "2025-01",
-      "end": "2026-05",
-      "description": "TA at Paul Merage School of Business."
-    },
-    {
-      "company": "Sega of America, Inc.",
-      "title": "MBA Project Consultant — GTM and Marketing Strategy",
-      "location": "Irvine, CA",
+      "company": "FundMore.ai",
+      "title": "Software Developer (Permanent Full-time)",
+      "location": "Ottawa, Canada",
       "start": "2025-09",
-      "end": "2025-12",
-      "description": "Led GTM and growth strategy for gaming titles. Designed community-led initiatives across social media, influencers, experiential activations. Managed campaign planning, budget allocation, ROI analysis. Workstream lead: Social Media, Community Events, Strategic Alliances."
+      "end": "present",
+      "description": "Developed and shipped 100+ critical software improvements, spanning new features and critical bug fixes, leveraging the MEAN stack, thus optimizing code quality and maintainability into the main development branch. Accelerated production readiness by delivering live bug fixes and feature enhancements across the codebase in a microservices environment, enabling smooth AWS deployments and seamless client-facing updates. Wrote and maintained unit, integration, and end-to-end tests to ensure 100% test coverage on all assigned features and bugs, significantly reducing QA load and post-deployment defects. Strengthened CI/CD infrastructure by ensuring every commit passed frontend, backend, and E2E test suites via GitHub Actions, accelerating team delivery velocity and reducing cycle times. Participated in multiple code reviews and agile stand-ups, contributing code improvements and providing actionable suggestions that consistently exceeded expectations."
     },
     {
-      "company": "Mattel, Inc.",
-      "title": "MBA Marketing Intern — Global Brand Team, Games",
-      "location": "El Segundo, California, United States",
-      "start": "2025-06",
+      "company": "FundMore.ai",
+      "title": "Junior Developer (Co-op)",
+      "location": "Ottawa, Canada",
+      "start": "2025-01",
       "end": "2025-08",
-      "description": "Drove GTM strategy for UNO Elite ($13M launch). Led Gen Z growth strategy for UNO. Built business cases for a $40M portfolio (pricing analysis, scenario modeling). Owned KPI tracking & post-launch analysis. Supported UNO Social Clubs experiential activations. Conducted whitespace opportunity analysis for digital gaming expansion of Monster High and Polly Pocket. Presented final recommendations to entire Games division including Global Head of Games."
+      "description": "Developed purpose-driven RAG-based AI agents by researching and delivering proof of concepts (POC's) for business-aligned use cases, demonstrating measurable impact and practical application. Collaborated with product and engineering teams to translate AI concepts into tangible product enhancements. Adapted role focus from R&D of AI-driven tools to hands-on full-stack feature development, contributing to scalable and maintainable product releases and accelerating product release cycles."
     },
     {
-      "company": "ZS Associates",
-      "title": "Senior Associate, Business Consulting",
-      "location": "Pune, Maharashtra, India",
-      "start": "2024-01",
-      "end": "2024-06",
-      "description": "Led market & customer analysis for a ~$20M pharmaceutical brand across UK, Canada, Italy. Managed and mentored 4 analysts; improved efficiency 20–25%."
+      "company": "ACTY Systems India Pvt. Ltd.",
+      "title": "Programmer (Permanent Full-time)",
+      "location": "Ahmedabad, Gujarat, India",
+      "start": "2022-12",
+      "end": "2023-08",
+      "description": "Customized and integrated critical modules and handheld terminals for 16 global clients, enhancing a production management system used by over 1,000 users across 80+ customer accounts, driving measurable operational efficiency. Designed and implemented intuitive C# interfaces and SSMS integrations using DevExpress components, enabling seamless access to complex MSSQL databases and improving user experience for enterprise-scale workflows. Collaborated cross-functionally in an agile, iterative environment, streamlining development processes and boosting team efficiency by 32% under tight deadlines. Leveraged automated code platforms to optimize SDLC practices, reducing development costs by 30% while ensuring consistent, on-time delivery of high-quality software solutions."
     },
     {
-      "company": "ZS Associates",
-      "title": "Decision Analytics Associate (Business Consulting)",
-      "location": "Pune, Maharashtra, India",
-      "start": "2022-07",
-      "end": "2023-12",
-      "description": "Be My Star award. International Markets team supporting BI&A for a top-5 worldwide pharma (Fortune 500). Clients across UK, Canada, Italy. Workstreams: Field Force Effectiveness, Incentive Compensation, brand management analytics, marketing campaigns, launch opportunity, GTM analytics, Key Driver analytics, Immuno-Oncology forecasting. Mentored 4+ associates."
-    },
-    {
-      "company": "ZS Associates",
-      "title": "Decision Analytics Associate Intern",
-      "location": "Pune, Maharashtra, India",
+      "company": "MeshDroid Technologies",
+      "title": "Mobile App Developer Intern (Full-time)",
+      "location": "Navsari, Gujarat, India",
       "start": "2022-01",
-      "end": "2022-07",
-      "description": "Pre-MBA internship."
+      "end": "2022-04",
+      "description": "Spearheaded the cross-platform migration of a healthcare application from Android to iOS using Flutter, integrating backend RESTful APIs, and successfully deploying the app to the App Store. Boosted mobile banking app user engagement by 35% through targeted resolution of logical business bugs and user-centric UI/UX enhancements in Flutter. Optimized IOT-based vending machine user experience by 20%, delivering a seamless omnichannel interface in Flutter for an enterprise-level producer and retailer."
     },
     {
-      "company": "MM Classes",
-      "title": "Consultant",
-      "location": "India",
-      "start": "2020-03",
-      "end": "2024-06",
-      "description": "Education / training consulting."
-    },
-    {
-      "company": "DA-IICT",
-      "title": "Research Intern",
-      "location": "Gandhinagar, Gujarat, India",
-      "start": "2022-01",
-      "end": "2022-12",
-      "description": "Parallelized arithmetic encoding algorithm. Best poster award, HiPC IEEE Data Analytics conference 2022."
+      "company": "Goldenmace IT Solutions",
+      "title": "Trainee (Part-time)",
+      "location": "Navsari, Gujarat, India",
+      "start": "2021-03",
+      "end": "2021-09",
+      "description": "Conceptualized and contributed to the full lifecycle development of a QR-based dining reservation app on the Play Store, leveraging Flutter and Firebase to deliver a seamless, intuitive user experience. Led the creation of a reusable e-commerce UI Kit in Flutter, expanding the company’s product portfolio and accelerating the development of client-facing applications. Enhanced an existing Flutter UI Kit, transforming it into a production-ready design system that improved usability and feature robustness across multiple projects."
     }
   ],
   "education": [
     {
-      "school": "University of California, Irvine — The Paul Merage School of Business",
-      "degree": "MBA, Strategy & Marketing (STEM-designated)",
-      "start": "2024-08",
-      "end": "2026-06",
-      "honors": ["Dean's list scholar (top 12%)", "Forté Fellow", "Paul Elizabeth merit scholarship", "Beta Gamma Sigma"],
-      "activities": ["VP Marketing, Product Club UCI", "TA", "Challenge 4 Charity volunteer"]
+      "school": "University of Windsor",
+      "degree": "Master of Applied Computing (Co-op stream)",
+      "location": "Windsor, Ontario, Canada",
+      "start": "2024-01",
+      "end": "2025-08",
+      "coursework": [
+        "Advanced Software Engineering",
+        "Advanced Computing Concepts",
+        "Advanced Database Topics",
+        "Advanced Systems Programming",
+        "Networking & Data Security",
+        "Internet Apps. & Dist. Systems",
+        "Marketing",
+        "Managing Employees"
+      ]
     },
     {
-      "school": "Dhirubhai Ambani Institute of Information and Communication Technology (DA-IICT)",
-      "degree": "BTech in ICT (Hons in Computational Science)",
-      "start": "2018",
-      "end": "2022",
-      "gpa": "4.3/5"
+      "school": "Gujarat Technological University",
+      "degree": "Bachelor of Computer Engineering",
+      "location": "Ahmedabad, India",
+      "start": "2018-06",
+      "end": "2022-06",
+      "coursework": [
+        "Data Structures & Algorithms",
+        "Operating Systems",
+        "Compiler Design",
+        "Information Security",
+        "Advanced Java",
+        "DBMS",
+        "Computer Networks",
+        "Mobile Application Development",
+        "Web Programming",
+        "AI",
+        "IoT and applications"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "FileSphere",
+      "url": "https://github.com/yash-mandaviya/FileSphere",
+      "start": "2024-05",
+      "end": "2024-08",
+      "tech_stack": [
+        "C",
+        "Socket Programming",
+        "Distributed Systems"
+      ],
+      "description": "Built a robust distributed file system using C and socket programming, where multiple servers handled different file types (.c, .pdf, .txt), and a centralized server facilitated seamless client-server interactions, ensuring efficient file management. Designed and implemented socket-based communication between clients and servers to enable real-time file distribution across multiple servers, improving system performance and ensuring scalability in handling large datasets."
+    },
+    {
+      "name": "VibeCheck",
+      "url": "https://github.com/yash-mandaviya/VibeCheck",
+      "start": "2020-02",
+      "end": "2020-02",
+      "tech_stack": [
+        "Streamlit",
+        "Python",
+        "Git",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "description": "Developed an innovative news sentiment analysis tool as a hackathon project using Python and NLP techniques to extract insights from Twitter data fetched by making use of Twitter API. Engineered a web-based dashboard using Streamlit to visualize sentiment analysis results, enabling users to interactively explore and interpret news sentiment trends from social media data."
     }
   ],
   "certifications": [
-    "Fundamentals of Finance",
-    "Marketing Analytics",
-    "Alteryx Designer Core Certified",
-    "Introduction to Marketing",
-    "Visharad Pratham in Kathak"
+    "Learning Hadoop, LinkedIn Learning",
+    "Agile Software Development: Scrum for Developers, LinkedIn Learning",
+    "Agile Project Management with Jira Cloud (LinkedIn learning path), LinkedIn Learning & PMI",
+    "Learning Amazon Web Services (AWS) for Developers, LinkedIn Learning",
+    "Learning Chrome Web Developer Tools, LinkedIn Learning",
+    "Microsoft Cybersecurity Architect (SC-100) Cert Prep, LinkedIn Learning",
+    "Selenium Essential Training, LinkedIn Learning",
+    "Introduction to Amazon Athena, Amazon Web Service"
   ],
   "honors_awards": [
-    "Beta Gamma Sigma honouree",
-    "Dean's list scholar (top 12%)",
-    "Forté Fellow",
-    "Be My Star (ZS, top performer among 500+)",
-    "Best Poster — HiPC IEEE Data Analytics 2022",
-    "SEGA FM26 case competition winner (UCI)",
-    "Best Paper SRS"
+    "Regional Finalist at Smart Gujarat for New India Hackathon, a 2-day Hackathon held in 2019-2020 in Gujarat, India.",
+    "Successfully coordinated a technical quiz event at a national level Techfest held in 2020 in Gujarat, India."
   ],
   "skills": [
-    "Product Marketing", "Brand Marketing", "GTM Strategy", "Marketing Analytics",
-    "Pricing Analysis", "Scenario Modeling", "Customer Segmentation", "Forecasting",
-    "KPI Frameworks", "Strategic Partnerships", "Influencer Marketing", "Experiential Marketing",
-    "Alteryx", "SQL", "Tableau", "Python", "Advanced Excel"
+    "Angular",
+    "Typescript",
+    "Node.js",
+    "C#",
+    "Java",
+    "Python",
+    "C",
+    "C++",
+    "Dart",
+    "Bash/Shell Scripting",
+    "PostgreSQL",
+    "Microsoft SQL Server",
+    "MySQL",
+    "MongoDB",
+    "SQLite",
+    "Firebase DB",
+    "Docker",
+    "Git",
+    "Jira",
+    "Github Actions",
+    "Jupyter Notebook",
+    "Postman",
+    "VSCode",
+    "Android Studio",
+    "Django",
+    "WPF",
+    ".NET Framework",
+    "DevExpress",
+    "Selenium",
+    "REST APIs",
+    "Linux",
+    "MacOS",
+    "Windows",
+    "Agile",
+    "Scrum",
+    "OOP",
+    "Adaptability",
+    "Analytical Thinking",
+    "Active Listening",
+    "Effective Communication",
+    "Team Collaboration"
   ],
   "languages": [
-    {"language": "English", "level": "Full Professional"},
-    {"language": "Hindi", "level": "Elementary"},
-    {"language": "Marathi", "level": "Elementary"},
-    {"language": "French", "level": "Elementary"},
-    {"language": "Gujarati", "level": "Elementary"}
+    {
+      "language": "English",
+      "level": "Full Professional"
+    },
+    {
+      "language": "Hindi",
+      "level": "Native or Bilingual"
+    },
+    {
+      "language": "Gujarati",
+      "level": "Native or Bilingual"
+    }
   ]
 }

@@ -6,6 +6,8 @@ from pathlib import Path
 
 import yaml
 
+from .resume_render import render_resume_md
+
 ROOT = Path(__file__).resolve().parent.parent
 PROFILE_DIR = ROOT / "profile"
 COMPANIES_PATH = ROOT / "companies.yaml"
@@ -27,13 +29,19 @@ class Profile:
 
 
 def load_profile() -> Profile:
-    resume = (PROFILE_DIR / "resume.md").read_text()
-
     linkedin_path = PROFILE_DIR / "linkedin.json"
     linkedin = json.loads(linkedin_path.read_text()) if linkedin_path.exists() else {}
 
     prefs_path = PROFILE_DIR / "preferences.yaml"
     prefs = yaml.safe_load(prefs_path.read_text()) if prefs_path.exists() else {}
+
+    # Resume text is derived from the (resume.tex-generated) linkedin profile so
+    # the candidate profile stays consistent. Fall back to a hand-written
+    # resume.md only if there's no structured data to render from.
+    resume = render_resume_md(linkedin)
+    if not resume:
+        resume_path = PROFILE_DIR / "resume.md"
+        resume = resume_path.read_text() if resume_path.exists() else ""
 
     return Profile(resume_md=resume, linkedin=linkedin, preferences=prefs)
 

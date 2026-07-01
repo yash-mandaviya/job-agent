@@ -20,18 +20,23 @@ class JobSpySource(JobSource):
     """
 
     name = "jobspy"
-    SITES = ["linkedin", "indeed", "glassdoor", "google"]
+    # LinkedIn/Indeed/Google accept country-level locations ("United States", "Canada").
+    # Glassdoor resolves location to a specific metro ID and rejects country names,
+    # so it's run separately against glassdoor_metros.
+    BROAD_SITES = ["linkedin", "indeed", "google"]
 
     def __init__(
         self,
         queries: list[str],
-        location: str = "United States",
+        locations: list[str] | str = "United States",
+        glassdoor_metros: list[str] | None = None,
         hours_old: int = 168,
         results_per_query: int = 20,
         concurrency: int = 2,
     ) -> None:
         self.queries = queries
-        self.location = location
+        self.locations = [locations] if isinstance(locations, str) else list(locations)
+        self.glassdoor_metros = list(glassdoor_metros) if glassdoor_metros else []
         self.hours_old = hours_old
         self.results_per_query = results_per_query
         self.concurrency = concurrency
@@ -42,31 +47,45 @@ class JobSpySource(JobSource):
             return []
 
         sem = asyncio.Semaphore(self.concurrency)
+        # (query, location, sites). Broad sites run on country-level locations;
+        # Glassdoor runs on metros only (skipped entirely if none configured).
+        combos: list[tuple[str, str, list[str]]] = [
+            (q, loc, self.BROAD_SITES) for q in self.queries for loc in self.locations
+        ]
+        combos += [
+            (q, metro, ["glassdoor"]) for q in self.queries for metro in self.glassdoor_metros
+        ]
 
-        async def one(q: str) -> list[JobPosting]:
+        async def one(q: str, loc: str, sites: list[str]) -> list[JobPosting]:
             async with sem:
-                return await asyncio.to_thread(self._scrape, q)
+                return await asyncio.to_thread(self._scrape, q, loc, sites)
 
-        batches = await asyncio.gather(*[one(q) for q in self.queries])
+        batches = await asyncio.gather(*[one(q, loc, sites) for q, loc, sites in combos])
         all_jobs = [j for batch in batches for j in batch]
         log.info(
-            "jobspy: %d total postings across %d queries (location=%r, hours_old=%d)",
+            "jobspy: %d total postings | %d queries x %d locations=%r (broad) "
+            "+ %d glassdoor metros=%r (hours_old=%d)",
             len(all_jobs),
             len(self.queries),
-            self.location,
+            len(self.locations),
+            self.locations,
+            len(self.glassdoor_metros),
+            self.glassdoor_metros,
             self.hours_old,
         )
         return all_jobs
 
-    def _scrape(self, query: str) -> list[JobPosting]:
+    def _scrape(self, query: str, location: str, sites: list[str]) -> list[JobPosting]:
+        # Indeed/Glassdoor need the country to match the location to return results.
+        country_indeed = "Canada" if "canada" in location.lower() else "United States"
         try:
             df = scrape_jobs(
-                site_name=self.SITES,
+                site_name=sites,
                 search_term=query,
-                location=self.location,
+                location=location,
                 results_wanted=self.results_per_query,
                 hours_old=self.hours_old,
-                country_indeed="USA",
+                country_indeed=country_indeed,
                 verbose=0,
             )
         except Exception as e:
